@@ -2,8 +2,8 @@ package poo_trabalho;
 
 public class Duração {
 	
-	int segundos;
-	int minutos;
+	private int segundos;
+	private int minutos;
 	
 	public int getSegundos() {
 		return segundos;

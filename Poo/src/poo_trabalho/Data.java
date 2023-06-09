@@ -2,9 +2,9 @@ package poo_trabalho;
 
 public class Data {
 	
-	int dia;
-	int mês;
-	int ano;
+	private int dia;
+	private int mês;
+	private int ano;
 	
 	public int getDia() {
 		return dia;

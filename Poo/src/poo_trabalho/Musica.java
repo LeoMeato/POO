@@ -2,11 +2,11 @@ package poo_trabalho;
 
 public class Musica {
 	
-	int identificador;
-	String título;
-	Duração duração;
-	String autores;
-	Data data;
+	private int identificador;
+	private String título;
+	private Duração duração;
+	private String autores;
+	private Data data;
 	
 	public int getIdentificador() {
 		return identificador;
