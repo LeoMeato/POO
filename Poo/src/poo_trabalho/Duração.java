@@ -17,5 +17,9 @@ public class Duração {
 	public void setMinutos(int minutos) {
 		this.minutos = minutos;
 	}
+	public Duração(int segundos, int minutos) {
+		this.segundos = segundos;
+		this.minutos = minutos;
+	}
 
 }

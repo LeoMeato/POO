@@ -12,7 +12,7 @@ public class ColeçãoMusicas {
 		this.coleção = new ArrayList();
 	}
 	
-	public Musica recuperar(String nome) {              // não testei ainda, não sei se está funcionando
+	public Musica recuperar(String nome) {            
 		Iterator<Musica> it = coleção.iterator();
 		Musica m;
 		int tamanho = coleção.size();

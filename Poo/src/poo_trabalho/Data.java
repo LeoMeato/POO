@@ -24,5 +24,10 @@ public class Data {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
+	public Data(int dia, int mês, int ano) {
+		this.dia = dia;
+		this.mês = mês;
+		this.ano = ano;
+	}
 
 }

@@ -1,6 +1,6 @@
 package poo_trabalho;
 
-public class Musica {
+public abstract class Musica {
 	
 	private int identificador;
 	private String título;
@@ -45,5 +45,18 @@ public class Musica {
 		this.gênero_musical = gênero_musical;
 	}
 	String gênero_musical;
+
+	public Musica(int identificador, String título, Duração duração, String autores, Data data, String gênero_musical) {
+		this.identificador = identificador;
+		this.título = título;
+		this.duração = duração;
+		this.autores = autores;
+		this.data = data;
+		this.gênero_musical = gênero_musical;
+	}
+	
+
+	
+	
 	
 }
