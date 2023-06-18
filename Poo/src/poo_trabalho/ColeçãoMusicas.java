@@ -9,7 +9,7 @@ public class ColeçãoMusicas {
 	private Collection<Musica> coleção;
 	
 	public ColeçãoMusicas() {
-		this.coleção = new ArrayList();
+		this.coleção = new ArrayList<Musica>();
 	}
 	
 	public Musica recuperar(String nome) {            

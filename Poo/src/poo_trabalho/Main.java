@@ -2,7 +2,7 @@ package poo_trabalho;
 
 public class Main {
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 	Duração dur = new Duração();
 	dur.setMinutos(2);
 	dur.setSegundos(10);
@@ -14,5 +14,5 @@ public class Main {
 	System.out.println(teste.getLetra());
 	System.out.println(teste.getTítulo());
 
-}
+}*/
 }
