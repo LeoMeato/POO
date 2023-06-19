@@ -29,5 +29,9 @@ public class Data {
 		this.mês = mês;
 		this.ano = ano;
 	}
+	
+	public String toStringVizualizar() {
+		return "\nData: " + dia + "/" + mês + "/" + ano;
+	}
 
 }

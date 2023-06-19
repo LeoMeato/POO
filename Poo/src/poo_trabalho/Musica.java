@@ -54,9 +54,12 @@ public abstract class Musica {
 		this.data = data;
 		this.gênero_musical = gênero_musical;
 	}
+	public Musica() {}
 	
 
-	
+	public String toStringVizualizar() {
+		return "Identificador: " + identificador + "\nTítulo: " + título + duração.toStringVizualizar() + "\nAutores: " + autores + data.toStringVizualizar() + "\nGênero Musical: " + gênero_musical;
+	}
 	
 	
 }

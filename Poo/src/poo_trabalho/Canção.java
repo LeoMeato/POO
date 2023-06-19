@@ -6,7 +6,7 @@ import java.io.FileReader;
 public class Canção extends Musica {
 	
 	private String nomeArquivoLetra;
-	private String Letra="";
+	private String letra="";
 	public String getNomeArquivoLetra() {
 		return nomeArquivoLetra;
 	}
@@ -14,10 +14,10 @@ public class Canção extends Musica {
 		this.nomeArquivoLetra = nomeArquivoLetra;
 	}
 	public String getLetra() {
-		return Letra;
+		return letra;
 	}
 	public void setLetra(String letra) {
-		Letra = letra;
+		this.letra = letra;
 	}
 	public Canção(int identificador, String título, Duração duração, String autores, Data data,String gênero_musical, String nomeArquivoLetra) {
 		super(identificador, título, duração, autores, data, gênero_musical);
@@ -32,8 +32,7 @@ public class Canção extends Musica {
 					ioe = true;
 				}
 				else{
-					Letra = Letra +" ";
-					Letra = Letra + s;
+					letra += "\n" + s;
 				}
 			}
 			br.close();
@@ -42,6 +41,10 @@ public class Canção extends Musica {
 			System.out.println(e.toString());
 		}
 	}
+	public Canção() {}
 	
+	public String toStringVizualizar() {
+		return super.toStringVizualizar() + "\nLetra:\n" + letra;
+	}
 	
 }

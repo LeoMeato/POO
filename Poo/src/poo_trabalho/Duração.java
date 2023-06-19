@@ -21,5 +21,9 @@ public class Duração {
 		this.segundos = segundos;
 		this.minutos = minutos;
 	}
+	
+	public String toStringVizualizar() {
+		return "\nDuração: " + minutos + "min" + segundos + "seg";
+	}
 
 }

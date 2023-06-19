@@ -6,25 +6,21 @@ import java.util.Iterator;
 
 public class ColeçãoUsuarios {
 	
-	private Collection<Usuario> coleção;
-	
-	public ColeçãoUsuarios() {
-		this.coleção = new ArrayList<Usuario>();
-	}
+	private static Collection<Usuario> coleção = new ArrayList<Usuario>();
 
-	public boolean adicionar(Usuario u) {
+	public static boolean adicionar(Usuario u) {
 		boolean contém = coleção.contains(u);
 		if(!contém) coleção.add(u);
 		return !contém;
 	}
 	
-	public boolean remover(Usuario u) {
+	public static boolean remover(Usuario u) {
 		boolean contém = coleção.contains(u);
 		if(contém) coleção.remove(u);
 		return contém;
 	}
 	
-	public Usuario buscar(String login) {
+	public static Usuario buscar(String login) {
 		
 		Iterator<Usuario> it = coleção.iterator();
 		Usuario u;

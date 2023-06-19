@@ -6,13 +6,9 @@ import java.util.Iterator;
 
 public class ColeçãoMusicas {
 	
-	private Collection<Musica> coleção;
+	private static Collection<Musica> coleção = new ArrayList<Musica>();
 	
-	public ColeçãoMusicas() {
-		this.coleção = new ArrayList<Musica>();
-	}
-	
-	public Musica recuperar(String nome) {            
+	public static Musica recuperar(String nome) {            
 		Iterator<Musica> it = coleção.iterator();
 		Musica m;
 		int tamanho = coleção.size();
@@ -23,7 +19,7 @@ public class ColeçãoMusicas {
 		return null;
 	}
 	
-	public boolean cadastra(Musica musica) {
+	public static boolean cadastra(Musica musica) {
 		boolean contém = coleção.contains(musica);
 		if(!contém) coleção.add(musica);
 		return !contém;
@@ -33,7 +29,7 @@ public class ColeçãoMusicas {
 		
 	}*/
 	
-	public boolean remover(Musica musica) {
+	public static boolean remover(Musica musica) {
 		boolean contém = coleção.contains(musica);
 		if(contém) coleção.remove(musica);
 		return contém;

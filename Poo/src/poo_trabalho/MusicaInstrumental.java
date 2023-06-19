@@ -10,6 +10,10 @@ public class MusicaInstrumental extends Musica {
 		this.nomeArquivoPartitura = nomeArquivoPartitura;
 	}
 	
+	public MusicaInstrumental() {}
 	
+	public String toStringVizualizar() {
+		return super.toStringVizualizar() + "\nNome do Arquivo da Partitura: " + nomeArquivoPartitura;
+	}
 	
 }
