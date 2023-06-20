@@ -2,11 +2,11 @@ package poo_trabalho;
 
 public abstract class Musica {
 	
-	private int identificador;
-	private String título;
-	private Duração duração;
-	private String autores;
-	private Data data;
+	private int identificador; // 4 bytes
+	private String título;     // 8 bytes
+	private Duração duração;   // 8 bytes
+	private String autores;    // 8 bytes
+	private Data data;         //12 bytes
 	
 	public int getIdentificador() {
 		return identificador;
@@ -60,6 +60,10 @@ public abstract class Musica {
 	public String toStringVizualizar() {
 		return "Identificador: " + identificador + "\nTítulo: " + título + duração.toStringVizualizar() + "\nAutores: " + autores + data.toStringVizualizar() + "\nGênero Musical: " + gênero_musical;
 	}
+
+		public byte[] toByte(){
+			return null;
+		}
 	
 	
 }

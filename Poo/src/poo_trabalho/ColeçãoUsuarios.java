@@ -32,5 +32,14 @@ public class ColeçãoUsuarios {
 		return null;
 		
 	}
-	
+	public static void escrever(){
+		Iterator<Usuario> it = coleção.iterator();
+		Usuario m;
+		Collection<byte[]> col = new ArrayList<byte[]>();
+		for (int i = 0; i < coleção.size(); i++) {
+			m = it.next();
+			col.add(m.toByte());
+		}
+		Persistência.WriteBin(col, 796);	
+	}
 }

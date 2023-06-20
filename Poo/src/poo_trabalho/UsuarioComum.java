@@ -1,7 +1,9 @@
 package poo_trabalho;
 
 import java.util.Collection;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class UsuarioComum extends Usuario {
@@ -63,5 +65,14 @@ public class UsuarioComum extends Usuario {
 		}
 		return false;
 	}
-	
+
+	public byte[] toByte(){
+		byte[] struct = super.toByte();
+		ByteBuffer bb = ByteBuffer.wrap(struct);
+		bb.put(124, "usuariocomum".getBytes());
+		return struct;
+	}
+	public byte[] toLogInByte(){
+		return super.toLogInByte();
+	}
 }

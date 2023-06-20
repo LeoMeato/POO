@@ -1,6 +1,8 @@
 package poo_trabalho;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -35,4 +37,14 @@ public class ColeçãoMusicas {
 		return contém;
 	}
 
+	public static void escrever(){
+		Iterator<Musica> it = coleção.iterator();
+		Musica m;
+		Collection<byte[]> col = new ArrayList<byte[]>();
+		for (int i = 0; i < coleção.size(); i++) {
+			m = it.next();
+			col.add(m.toByte());
+		}
+		Persistência.WriteBin(col, 796);
+	}
 }

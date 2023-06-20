@@ -2,6 +2,8 @@ package poo_trabalho;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public class Canção extends Musica {
 	
@@ -45,6 +47,27 @@ public class Canção extends Musica {
 	
 	public String toStringVizualizar() {
 		return super.toStringVizualizar() + "\nLetra:\n" + letra;
+	}
+
+	public byte[] toByte(){
+		byte[]aux;
+		byte[] struct = new byte[219];
+		Arrays.fill(struct, (byte)0);
+		ByteBuffer bb = ByteBuffer.wrap(struct);
+		bb.putInt(0,getIdentificador());
+		aux = getTítulo().getBytes();
+		bb.put(4,aux);
+		bb.putInt(64,getDuração().getSegundos());
+		bb.putInt(68,getDuração().getMinutos());
+		aux=getAutores().getBytes();
+		bb.put(72,aux);
+		bb.putInt(132, getData().getDia());
+		bb.putInt(136, getData().getMês());
+		bb.putInt(140, getData().getAno());
+		aux = nomeArquivoLetra.getBytes();
+		bb.put(144,aux);
+		bb.put(164, "cancao".getBytes());
+		return struct;
 	}
 	
 }
