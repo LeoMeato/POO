@@ -48,4 +48,20 @@ public class UsuarioComum extends Usuario {
 		System.out.println("Resultado para '" + titulo + "':\n\n" + m.toStringVizualizar());
 	}
 	
+	public boolean seCadastrar() {
+		if (ColeçãoUsuarios.buscar(getLogin()) == null) {
+			ColeçãoUsuarios.adicionar(this);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean seRemover() {
+		if (ColeçãoUsuarios.buscar(getLogin()) != null) {
+			ColeçãoUsuarios.remover(this);
+			return true;
+		}
+		return false;
+	}
+	
 }

@@ -26,14 +26,27 @@ public class Main {
 			ColeçãoMusicas.cadastra(m2);
 			ColeçãoMusicas.cadastra(m3);
 			
-			UsuarioComum uc = new UsuarioComum();
+			UsuarioComum uc1 = new UsuarioComum();
+			UsuarioComum uc2 = new UsuarioComum();
 			
-			uc.criarPlaylist();
+			uc1.setLogin("abcd");
+			uc2.setLogin("efgh");
 			
-			uc.adicionar("O Bater de Asas da Borboleta");
-			uc.adicionar("Quando Surgirem as Estrelas");
+			uc1.seCadastrar();
+			uc2.seCadastrar();
 			
-			uc.vizualizar("Quando Surgirem as Estrelas");
+			uc1.criarPlaylist();
+			
+			uc1.adicionar("O Bater de Asas da Borboleta");
+			uc1.adicionar("Quando Surgirem as Estrelas");
+			
+			uc2.seRemover();
+			
+			uc1.vizualizar("Quando Surgirem as Estrelas");
+			
+			/*Usuario u = ColeçãoUsuarios.buscar(uc2.getLogin());
+			if (u != null) System.out.println(u.getLogin());
+			else System.out.println("usuário não existe");*/
 
 	}
 }
