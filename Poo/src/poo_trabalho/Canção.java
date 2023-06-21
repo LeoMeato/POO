@@ -51,7 +51,7 @@ public class Canção extends Musica {
 
 	public byte[] toByte(){
 		byte[]aux;
-		byte[] struct = new byte[219];
+		byte[] struct = new byte[231];
 		Arrays.fill(struct, (byte)0);
 		ByteBuffer bb = ByteBuffer.wrap(struct);
 		bb.putInt(0,getIdentificador());
@@ -67,6 +67,8 @@ public class Canção extends Musica {
 		aux = nomeArquivoLetra.getBytes();
 		bb.put(144,aux);
 		bb.put(164, "cancao".getBytes());
+		struct = bb.array();
+		System.out.println(struct);
 		return struct;
 	}
 	

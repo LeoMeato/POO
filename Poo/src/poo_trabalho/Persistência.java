@@ -11,7 +11,7 @@ import java.util.Iterator;
 //import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Persistência {
-    public static <T> boolean WriteBin(Collection<byte[]> coleção, int arquivo) {
+    public static boolean WriteBin(Collection<byte[]> coleção, int arquivo) {
         try {
             String nomearquivo="Hola";
         
