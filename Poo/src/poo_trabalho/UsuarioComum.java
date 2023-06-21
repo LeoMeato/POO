@@ -9,6 +9,7 @@ import java.util.Iterator;
 public class UsuarioComum extends Usuario {
 	
 	private Collection<Musica> coleçãoParticular;
+	private String tipo = "comum";
 	
 	public boolean adicionar(String titulo) {
 		Musica m = ColeçãoMusicas.recuperar(titulo);
@@ -22,6 +23,10 @@ public class UsuarioComum extends Usuario {
 		return false;
 	}
 	
+	public UsuarioComum(String nome, int identificador, String login, String senha) {
+		super(nome, identificador, login, senha);
+	}
+
 	public void criarPlaylist() {
 		this.coleçãoParticular = new ArrayList<Musica>();
 	}

@@ -20,8 +20,8 @@ public class Main {
 			ColeçãoMusicas.cadastra(m2);
 			ColeçãoMusicas.cadastra(m3);
 			
-			UsuarioComum uc1 = new UsuarioComum();
-			UsuarioComum uc2 = new UsuarioComum();
+			UsuarioComum uc1 = new UsuarioComum(null, 0, null, null);
+			UsuarioComum uc2 = new UsuarioComum(null, 0, null, null);
 			
 			uc1.setLogin("abcd");
 			uc2.setLogin("efgh");

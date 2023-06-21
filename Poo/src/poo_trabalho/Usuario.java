@@ -9,6 +9,7 @@ public abstract class Usuario {
 	private int identificador;
 	private String login;
 	private String senha;
+	private String tipo;
 	
 	public String getNome() {
 		return nome;
@@ -18,6 +19,13 @@ public abstract class Usuario {
 	}
 	public int getIdentificador() {
 		return identificador;
+	}
+	public Usuario(String nome, int identificador, String login, String senha) {
+		super();
+		this.nome = nome;
+		this.identificador = identificador;
+		this.login = login;
+		this.senha = senha;
 	}
 	public void setIdentificador(int identificador) {
 		this.identificador = identificador;
@@ -55,6 +63,9 @@ public abstract class Usuario {
 		bb.putInt(0, getIdentificador());
 		bb.put(4,aux);
 		return struct;
+	}
+	public String getTipo() {
+		return tipo;
 	}
 	
 	
