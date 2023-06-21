@@ -20,33 +20,15 @@ public class Main {
 			ColeçãoMusicas.cadastra(m2);
 			ColeçãoMusicas.cadastra(m3);
 			
-			UsuarioComum uc1 = new UsuarioComum(null, 0, null, null);
-			UsuarioComum uc2 = new UsuarioComum(null, 0, null, null);
-			
-			uc1.setLogin("abcd");
-			uc2.setLogin("efgh");
+			UsuarioComum uc1 = new UsuarioComum("a", 0, "a", "a");
+			UsuarioComum uc2 = new UsuarioComum("b", 1, "b", "b");
 			
 			uc1.seCadastrar();
 			uc2.seCadastrar();
 			
-			uc1.criarPlaylist();
+			Sistema s = new Sistema();
+			s.executar();
 			
-			uc1.adicionar("O Bater de Asas da Borboleta");
-			uc1.adicionar("Quando Surgirem as Estrelas");
-			
-			uc2.seRemover();
-			
-			uc1.vizualizar("Quando Surgirem as Estrelas");
-			System.out.println(m1.toByte());
-
-			ColeçãoMusicas.escrever();
-			
-			m2.toByte()
-;
-			
-			/*Usuario u = ColeçãoUsuarios.buscar(uc2.getLogin());
-			if (u != null) System.out.println(u.getLogin());
-			else System.out.println("usuário não existe");*/
 
 	}
 }

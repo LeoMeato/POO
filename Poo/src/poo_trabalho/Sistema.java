@@ -33,14 +33,14 @@ public class Sistema {
 		Usuario u;
 		int escolha;
 		Scanner s = new Scanner(System.in);
-		s.nextLine(); //não sei se precisa
+		//s.nextLine(); //não sei se precisa
 		while(true) {
 			System.out.println("\n\nLogin: ");
-			login = s.nextLine();
+			login = s.nextLine().strip();
 			System.out.println("\nSenha: ");
-			senha = s.nextLine();
+			senha = s.nextLine().strip();
 			u = ColeçãoUsuarios.buscar(login);
-			if (u.getLogin() == login && u.getSenha() == senha) {
+			if (u != null && u.getLogin().compareTo(login) == 0 && u.getSenha().compareTo(senha) == 0) {
 				this.user = u;
 				return true;
 			}
@@ -63,12 +63,13 @@ public class Sistema {
 		escolha = tratarResposta(2, s);
 		System.out.println("\nInsira um identificador: ");
 		id = s.nextInt();
+		s.nextLine();
 		System.out.println("\nInsira um login: ");
-		login = s.nextLine();
+		login = s.nextLine().strip();
 		System.out.println("\nInsira um nome: ");
-		nome = s.nextLine();
+		nome = s.nextLine().strip();
 		System.out.println("\nInsira uma senha: ");
-		senha = s.nextLine();
+		senha = s.nextLine().strip();
 		if (escolha == 1) u = new UsuarioComum(nome, id, login, senha);
 		else u = new Administrador(nome, id, login, senha);
 		ColeçãoUsuarios.adicionar(u);
@@ -95,12 +96,34 @@ public class Sistema {
 					+ "(5) Apagar a conta\n"
 					+ "(6) Sair\n");
 			escolha = tratarResposta(6, s);
+			s.nextLine();
 			if (escolha == 1) u.criarPlaylist();
 			else if (escolha == 2) {
 				System.out.println("\nQue música gostaria de adicionar? ");
 				titulo = s.nextLine();
 				if (u.adicionar(titulo)) System.out.println("\nMúsica adicionada na playlist com sucesso!");
+				else System.out.println("\nMúsica não existe ou já está na playlist.");
+			}
+			else if (escolha == 3) {
+				System.out.println("\nQue música gostaria de remover? ");
+				titulo = s.nextLine();
+				if (u.remover(titulo)) System.out.println("\nMúsica removida da playlist com sucesso!");
 				else System.out.println("\nMúsica não existe.");
+			}
+			else if (escolha == 4) {
+				System.out.println("\nQue música gostaria de vizualizar? ");
+				titulo = s.nextLine();
+				u.vizualizar(titulo);
+			}
+			else if (escolha == 5) {
+				u.seRemover();
+				System.out.println("Conta excluída com sucesso!");
+				this.user = null;
+				break;
+			}
+			else if (escolha == 6) {
+				this.user = null;
+				break;
 			}
 		}
 		
@@ -114,7 +137,7 @@ public class Sistema {
 		int escolha1;
 		while (true) {
 			escolha1 = páginaInicial();
-			if (escolha1 == 1) if(páginaLogIn());
+			if (escolha1 == 1) {if(páginaLogIn()) páginaOperações();}
 			else if (escolha1 == 2) páginaSignUp();
 			else if (escolha1 == 3) break;
 		}

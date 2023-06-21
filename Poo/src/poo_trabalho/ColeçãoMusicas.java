@@ -16,7 +16,7 @@ public class ColeçãoMusicas {
 		int tamanho = coleção.size();
 		for (int i = 0; i < tamanho; i++) {
 			m = it.next();
-			if (m.getTítulo().compareTo(nome) == 0) return m;
+			if (m.getTítulo().toLowerCase().compareTo(nome.toLowerCase()) == 0) return m;
 		}
 		return null;
 	}

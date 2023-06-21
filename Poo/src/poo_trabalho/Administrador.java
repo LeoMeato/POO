@@ -20,5 +20,9 @@ public class Administrador extends Usuario {
 	public byte[] toLogInByte(){
 		return super.toLogInByte();
 	}
+	
+	public String getTipo() {
+		return tipo;
+	}
 
 }

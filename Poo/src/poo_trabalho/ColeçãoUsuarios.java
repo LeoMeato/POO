@@ -27,7 +27,7 @@ public class ColeçãoUsuarios {
 		int tamanho = coleção.size();
 		for(int i = 0; i < tamanho; i++) {
 			u = it.next();
-			if (u.getLogin().compareTo(login) == 0) return u;
+			if (u.getLogin().toLowerCase().compareTo(login.toLowerCase()) == 0) return u;
 		}
 		return null;
 		

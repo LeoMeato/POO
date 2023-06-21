@@ -14,7 +14,7 @@ public class UsuarioComum extends Usuario {
 	public boolean adicionar(String titulo) {
 		Musica m = ColeçãoMusicas.recuperar(titulo);
 		if (m != null) {
-			if (!coleçãoParticular.contains(m)) {
+			if (!coleçãoParticular.contains(m) && coleçãoParticular != null) {
 				this.coleçãoParticular.add(m);
 				return true;
 			}
@@ -45,14 +45,15 @@ public class UsuarioComum extends Usuario {
 		Musica m;
 		for (int i = 0; i < coleçãoParticular.size(); i++) {
 			m = it.next();
-			if (titulo.compareTo(m.getTítulo()) == 0) return m;
+			if (titulo.toLowerCase().compareTo(m.getTítulo().toLowerCase()) == 0) return m;
 		}
 		return null;
 	}
 	
 	public void vizualizar(String titulo) {
 		Musica m = buscar(titulo);
-		System.out.println("Resultado para '" + titulo + "':\n\n" + m.toStringVizualizar());
+		if (m != null) System.out.println("Resultado para '" + titulo + "':\n\n" + m.toStringVizualizar());
+		else System.out.println("Música não encontrada.");
 	}
 	
 	public boolean seCadastrar() {
@@ -79,5 +80,9 @@ public class UsuarioComum extends Usuario {
 	}
 	public byte[] toLogInByte(){
 		return super.toLogInByte();
+	}
+
+	public String getTipo() {
+		return tipo;
 	}
 }
