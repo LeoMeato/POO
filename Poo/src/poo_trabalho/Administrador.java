@@ -10,6 +10,12 @@ public class Administrador extends Usuario {
 		super(nome, identificador, login, senha);
 	}
 	
+	public void vizualizar(String titulo) {
+		Musica m = ColeçãoMusicas.recuperar(titulo);
+		if (m != null) System.out.println("Resultado para '" + titulo + "':\n\n" + m.toStringVizualizar());
+		else System.out.println("Música não encontrada.");
+	}
+	
     public byte[] toByte(){
 		byte[] struct = super.toByte();
 		ByteBuffer bb = ByteBuffer.wrap(struct);

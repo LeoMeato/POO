@@ -1,6 +1,7 @@
 package poo_trabalho;
 
 import java.nio.ByteBuffer;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -46,5 +47,64 @@ public class ColeçãoMusicas {
 			col.add(m.toByte());
 		}
 		Persistência.WriteBin(col, 796);
+	}
+	
+	public static void vizualizar(String titulo) {
+		Musica m = recuperar(titulo);
+		if (m != null) System.out.println("Resultado para '" + titulo + "':\n\n" + m.toStringVizualizar());
+		else System.out.println("Música não encontrada.");
+	}
+
+	public static void novaMusica() { //não sei se deixo aqui ou em Sistema
+		
+		Scanner s = new Scanner(System.in);
+		int escolha;
+		Musica m;
+		String titulo;
+		String autores;
+		String genero;
+		int identificador;
+		Duração duracao;
+		int segundos;
+		int dia;
+		int mes;
+		int ano;
+		Data data;
+		
+		System.out.println("\nTítulo: ");
+		titulo = s.nextLine();
+		System.out.println("\nIdentificador: ");
+		identificador = s.nextInt();
+		System.out.println("\nAutores: ");
+		autores = s.nextLine();
+		System.out.println("\nGênero Musical: ");
+		genero = s.nextLine();
+		System.out.println("\nDuração (segundos): ");
+		segundos = s.nextInt();
+		System.out.println("\nDia: ");
+		dia = s.nextInt();
+		System.out.println("\nMês: ");
+		mes = s.nextInt();
+		System.out.println("\nAno: ");
+		ano = s.nextInt();
+		
+		duracao = new Duração(segundos % 60, (segundos - (segundos % 60)) / 60);
+		data = new Data(dia, mes, ano);
+		
+		System.out.println("\nMúsica Instrumental (1) ou Canção (2)? ");
+		escolha = Sistema.tratarResposta(2, s);
+		if (escolha == 1) {
+			System.out.println("\nNome do arquivo da partitura: ");
+			m = new MusicaInstrumental(identificador, titulo, duracao, autores, data, genero, s.nextLine());
+		}
+		else {
+			System.out.println("\nNome do arquivo da letra: ");
+			m = new Canção(identificador, titulo, duracao, autores, data, genero, s.nextLine());
+		}
+		
+		boolean foi = cadastra(m);
+		if (foi) System.out.println("Música cadastrada com sucesso!");
+		else System.out.println("Música já existe.");
+		
 	}
 }

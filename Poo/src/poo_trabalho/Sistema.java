@@ -6,7 +6,7 @@ public class Sistema {
 	
 	Usuario user;
 	
-	public int tratarResposta(int max, Scanner s) { //pede uma escolha do usuário até que digite um inteiro entre 1 e max
+	public static int tratarResposta(int max, Scanner s) { //pede uma escolha do usuário até que digite um inteiro entre 1 e max
 		int escolha;
 		while (true) {
 			escolha = s.nextInt();
@@ -131,6 +131,33 @@ public class Sistema {
 	
 	public void páginaOperaçõesAdm() {
 		
+		Administrador u = (Administrador) user;
+		int escolha;
+		String busca;
+		Scanner s = new Scanner(System.in);
+		String titulo;
+		while (true) {
+			System.out.println("O que deseja fazer?\n\n"
+					+ "(1) Cadastrar música\n"
+					+ "(2) Vizualizar música\n"
+					+ "(3) Atualizar música\n"
+					+ "(4) Remover música\n"
+					+ "(5) Adicionar usuário\n"
+					+ "(6) Buscar usuário\n"
+					+ "(7) Remover usuário\n"
+					+ "(8) Sair\n");
+			escolha = tratarResposta(8, s);
+			s.nextLine();
+			if (escolha == 1) ColeçãoMusicas.novaMusica();
+			else if (escolha == 2) {System.out.println("\nQue música quer vizualizar? "); ColeçãoMusicas.vizualizar(s.nextLine());}
+			else if (escolha == 3);
+			else if (escolha == 4) {System.out.println("\nQue música quer remover? "); ColeçãoMusicas.remover(ColeçãoMusicas.recuperar(s.nextLine()));}
+			else if (escolha == 5) páginaSignUp();
+			else if (escolha == 6);
+			else if (escolha == 7) {System.out.println("\nQue usuário quer remover? "); ColeçãoUsuarios.remover(ColeçãoUsuarios.buscar(s.nextLine()));}
+			else if (escolha == 8) {this.user = null; break;}
+		}
+			
 	}
 	
 	public void executar() {
