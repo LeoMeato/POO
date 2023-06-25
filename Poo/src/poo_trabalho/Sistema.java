@@ -151,10 +151,10 @@ public class Sistema {
 			if (escolha == 1) ColeçãoMusicas.novaMusica();
 			else if (escolha == 2) {System.out.println("\nQue música quer vizualizar? "); ColeçãoMusicas.vizualizar(s.nextLine());}
 			else if (escolha == 3);
-			else if (escolha == 4) {System.out.println("\nQue música quer remover? "); ColeçãoMusicas.remover(ColeçãoMusicas.recuperar(s.nextLine()));}
+			else if (escolha == 4) {System.out.println("\nQue música quer remover? "); if (ColeçãoMusicas.remover(ColeçãoMusicas.recuperar(s.nextLine()))) System.out.println("\n\nMúsica removida com sucesso!\n");}
 			else if (escolha == 5) páginaSignUp();
-			else if (escolha == 6);
-			else if (escolha == 7) {System.out.println("\nQue usuário quer remover? "); ColeçãoUsuarios.remover(ColeçãoUsuarios.buscar(s.nextLine()));}
+			else if (escolha == 6) {System.out.println("\nQue usuário quer buscar? (login) "); ColeçãoUsuarios.buscar(s.nextLine()).toString();}
+			else if (escolha == 7) {System.out.println("\nQue usuário quer remover? (login) "); ColeçãoUsuarios.remover(ColeçãoUsuarios.buscar(s.nextLine()));}
 			else if (escolha == 8) {this.user = null; break;}
 		}
 			

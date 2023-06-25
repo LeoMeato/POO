@@ -75,6 +75,7 @@ public class ColeçãoMusicas {
 		titulo = s.nextLine();
 		System.out.println("\nIdentificador: ");
 		identificador = s.nextInt();
+		s.nextLine();
 		System.out.println("\nAutores: ");
 		autores = s.nextLine();
 		System.out.println("\nGênero Musical: ");
@@ -93,6 +94,7 @@ public class ColeçãoMusicas {
 		
 		System.out.println("\nMúsica Instrumental (1) ou Canção (2)? ");
 		escolha = Sistema.tratarResposta(2, s);
+		s.nextLine();
 		if (escolha == 1) {
 			System.out.println("\nNome do arquivo da partitura: ");
 			m = new MusicaInstrumental(identificador, titulo, duracao, autores, data, genero, s.nextLine());

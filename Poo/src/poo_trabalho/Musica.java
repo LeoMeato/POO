@@ -61,9 +61,9 @@ public abstract class Musica {
 		return "Identificador: " + identificador + "\nTítulo: " + título + duração.toStringVizualizar() + "\nAutores: " + autores + data.toStringVizualizar() + "\nGênero Musical: " + gênero_musical;
 	}
 
-		public byte[] toByte(){
-			return null;
-		}
+	public byte[] toByte(){
+		return null;
+	}
 	
 	
 }

@@ -23,8 +23,12 @@ public class Main {
 			UsuarioComum uc1 = new UsuarioComum("a", 0, "a", "a");
 			UsuarioComum uc2 = new UsuarioComum("b", 1, "b", "b");
 			
+			Administrador adm1 = new Administrador("c", 2, "c", "c");
+			
 			uc1.seCadastrar();
 			uc2.seCadastrar();
+			
+			ColeçãoUsuarios.adicionar(adm1);
 			
 			Sistema s = new Sistema();
 			s.executar();
