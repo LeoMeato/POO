@@ -107,6 +107,6 @@ public class ColeçãoMusicas {
 		boolean foi = cadastra(m);
 		if (foi) System.out.println("Música cadastrada com sucesso!");
 		else System.out.println("Música já existe.");
-		
+
 	}
 }

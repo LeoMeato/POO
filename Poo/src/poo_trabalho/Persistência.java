@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -33,6 +34,5 @@ public class Persistência {
         }
             
     }
-}
 
-//criar variável b; consertar T genérico e ver questão do seletor de arquivos
+}

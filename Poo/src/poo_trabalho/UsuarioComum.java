@@ -1,6 +1,8 @@
 package poo_trabalho;
 
 import java.util.Collection;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +17,15 @@ public class UsuarioComum extends Usuario {
 		Musica m = ColeçãoMusicas.recuperar(titulo);
 		if (m != null) {
 			if (!coleçãoParticular.contains(m) && coleçãoParticular != null) {
+				try {
+					byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
+    				Collection<byte[]> colecao = new ArrayList<>();
+    				colecao.add(identificador);
+    				return Persistência.WriteBin(colecao, 1);
+				} catch (Exception e) {
+					System.out.println(e.toString());
+				}
+
 				this.coleçãoParticular.add(m);
 				return true;
 			}
