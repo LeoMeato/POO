@@ -3,7 +3,7 @@
  */
 /**
  * @author Leo
- * @authorestevaomori
+ * @author estevaomori
  *
  */
 module POO {
