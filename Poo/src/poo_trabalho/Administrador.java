@@ -20,6 +20,7 @@ public class Administrador extends Usuario {
 		byte[] struct = super.toByte();
 		ByteBuffer bb = ByteBuffer.wrap(struct);
 		bb.put(124, "administrador".getBytes());
+		struct = bb.array();
 		return struct;
 	}
 

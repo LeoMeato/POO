@@ -40,6 +40,6 @@ public class ColeçãoUsuarios {
 			m = it.next();
 			col.add(m.toByte());
 		}
-		Persistência.WriteBin(col, 796);	
+		Persistência.WriteBin(col, 1);	
 	}
 }

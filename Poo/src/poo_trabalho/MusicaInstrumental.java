@@ -37,6 +37,7 @@ public class MusicaInstrumental extends Musica {
 		aux = nomeArquivoPartitura.getBytes();
 		bb.put(144,aux);
 		bb.put(164, "musicainstrumental".getBytes());
+		struct = bb.array();
 		return struct;
 	}
 }

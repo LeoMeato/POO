@@ -52,6 +52,7 @@ public abstract class Usuario {
 		bb.putInt(60, getIdentificador());
 		aux=getSenha().getBytes();
 		bb.put(64, aux);
+		struct = bb.array();
 		return struct;
 	}
 
@@ -62,6 +63,7 @@ public abstract class Usuario {
 		ByteBuffer bb = ByteBuffer.wrap(struct);
 		bb.putInt(0, getIdentificador());
 		bb.put(4,aux);
+		struct = bb.array();
 		return struct;
 	}
 	public String getTipo() {

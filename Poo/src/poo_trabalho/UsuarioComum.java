@@ -76,6 +76,7 @@ public class UsuarioComum extends Usuario {
 		byte[] struct = super.toByte();
 		ByteBuffer bb = ByteBuffer.wrap(struct);
 		bb.put(124, "usuariocomum".getBytes());
+		struct = bb.array();
 		return struct;
 	}
 	public byte[] toLogInByte(){

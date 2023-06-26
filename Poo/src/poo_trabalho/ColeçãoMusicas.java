@@ -46,7 +46,7 @@ public class ColeçãoMusicas {
 			m = it.next();
 			col.add(m.toByte());
 		}
-		Persistência.WriteBin(col, 796);
+		Persistência.WriteBin(col, 2);
 	}
 	
 	public static void vizualizar(String titulo) {
