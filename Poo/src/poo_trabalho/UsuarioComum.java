@@ -12,6 +12,7 @@ public class UsuarioComum extends Usuario {
 	
 	private Collection<Musica> coleçãoParticular;
 	private String tipo = "comum";
+	private String nomearquivo = this.getNome()+"Playlist.txt";
 	
 	public boolean adicionar(String titulo) {
 		Musica m = ColeçãoMusicas.recuperar(titulo);
@@ -46,7 +47,10 @@ public class UsuarioComum extends Usuario {
 		Musica m = buscar(titulo);
 		if (m !=  null) {
 			coleçãoParticular.remove(m);
-			return true;
+			byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
+    		Collection<byte[]> colecao = new ArrayList<>();
+    		colecao.add(identificador);
+    		return Persistência.RemoveFromBin(colecao, nomearquivo);
 		}
 		return false;
 	}
@@ -97,4 +101,14 @@ public class UsuarioComum extends Usuario {
 	public String getTipo() {
 		return tipo;
 	}
+
+	public String getNomearquivo() {
+		return nomearquivo;
+	}
+
+	public void setNomearquivo(String nomearquivo) {
+		this.nomearquivo = nomearquivo;
+	}
+
+	
 }

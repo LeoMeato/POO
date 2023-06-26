@@ -1,8 +1,11 @@
 package poo_trabalho;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -33,6 +36,56 @@ public class Persistência {
             return false;
         }
             
+    }
+    public static boolean RemoveFromBin(Collection<byte[]> colecao, String nomearquivo) {
+        try {
+            File file = new File(nomearquivo);
+            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            
+            for (byte[] b : colecao) {
+                long bytePosition = findBytePosition(raf, b);
+                if (bytePosition != -1) {
+                    removeByte(raf, bytePosition);
+                }
+            }
+            
+            raf.close();
+            return true;
+        } catch (IOException e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
+
+    private static long findBytePosition(RandomAccessFile raf, byte[] b) throws IOException {
+        long position = -1;
+        long fileLength = raf.length();
+        
+        for (long i = 0; i < fileLength; i++) {
+            raf.seek(i);
+            byte[] buffer = new byte[b.length];
+            int bytesRead = raf.read(buffer);
+            
+            if (bytesRead == b.length && Arrays.equals(buffer, b)) {
+                position = i;
+                break;
+            }
+        }
+        
+        return position;
+    }
+
+    private static void removeByte(RandomAccessFile raf, long bytePosition) throws IOException {
+        long fileLength = raf.length();
+        
+        for (long i = bytePosition + 1; i < fileLength; i++) {
+            raf.seek(i);
+            byte b = raf.readByte();
+            raf.seek(i - 1);
+            raf.writeByte(b);
+        }
+        
+        raf.setLength(fileLength - 1);
     }
 
 }
