@@ -1,7 +1,9 @@
 package poo_trabalho;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -88,4 +90,64 @@ public class Persistência {
         raf.setLength(fileLength - 1);
     }
 
+    public static byte[] ReadBin(byte[] zeroBytes, String nomearquivo) {
+        try {
+            FileInputStream fis = new FileInputStream(nomearquivo);
+            DataInputStream dis = new DataInputStream(fis);
+
+            Collection<byte[]> colecao = new ArrayList<>();
+
+            int bytesRead;
+            byte[] buffer = new byte[zeroBytes.length];
+
+            while ((bytesRead = dis.read(buffer)) != -1) {
+                if (bytesRead == zeroBytes.length && bytesAreEqual(buffer, zeroBytes)) {
+                    break;
+                }
+
+                colecao.add(buffer);
+                buffer = new byte[zeroBytes.length];
+            }
+
+            dis.close();
+            fis.close();
+
+            return combineByteArrays(colecao);
+        } catch (IOException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
+    private static boolean bytesAreEqual(byte[] array1, byte[] array2) {
+        if (array1.length != array2.length) {
+            return false;
+        }
+
+        for (int i = 0; i < array1.length; i++) {
+            if (array1[i] != array2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static byte[] combineByteArrays(Collection<byte[]> colecao) {
+        int totalLength = 0;
+
+        for (byte[] array : colecao) {
+            totalLength += array.length;
+        }
+
+        byte[] combinedArray = new byte[totalLength];
+        int currentIndex = 0;
+
+        for (byte[] array : colecao) {
+            System.arraycopy(array, 0, combinedArray, currentIndex, array.length);
+            currentIndex += array.length;
+        }
+
+        return combinedArray;
+    }
 }
