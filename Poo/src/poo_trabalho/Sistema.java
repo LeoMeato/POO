@@ -6,6 +6,16 @@ public class Sistema {
 	
 	Usuario user;
 	
+	public void recuperarPersistência() {
+		
+	}
+	
+	public void guardarPersistência() {
+		ColeçãoMusicas.escrever();
+		ColeçãoUsuarios.escrever();
+		ColeçãoUsuarios.escreverLogin();
+	}
+	
 	public static int tratarResposta(int max, Scanner s) { //pede uma escolha do usuário até que digite um inteiro entre 1 e max
 		int escolha;
 		while (true) {
@@ -19,7 +29,7 @@ public class Sistema {
 		}
 	}
 	
-	public int páginaInicial() {
+	private int páginaInicial() {
 		int escolha;
 		Scanner s = new Scanner(System.in);
 		System.out.println("ESPOT FAY\n\n(1) Log In\n(2) Sign Up\n(3) Encerrar\n\nComo deseja prosseguir? ");
@@ -27,7 +37,7 @@ public class Sistema {
 		return escolha;
 	}
 	
-	public boolean páginaLogIn() {
+	private boolean páginaLogIn() {
 		String login;
 		String senha;
 		Usuario u;
@@ -51,7 +61,7 @@ public class Sistema {
 		return false;
 	}
 	
-	public void páginaSignUp() {
+	private void páginaSignUp() {
 		Usuario u;
 		int escolha;
 		int id;
@@ -76,12 +86,12 @@ public class Sistema {
 		System.out.println("Conta criada com sucesso!");
 	}
 	
-	public void páginaOperações() {
+	private void páginaOperações() {
 		if (user.getTipo().compareTo("comum") == 0) páginaOperaçõesComum();
 		else if (user.getTipo().compareTo("adm") == 0) páginaOperaçõesAdm();
 	}
 	
-	public void páginaOperaçõesComum() {
+	private void páginaOperaçõesComum() {
 		
 		UsuarioComum u = (UsuarioComum) user;
 		int escolha;
@@ -129,7 +139,7 @@ public class Sistema {
 		
 	}
 	
-	public void páginaOperaçõesAdm() {
+	private void páginaOperaçõesAdm() {
 		
 		Administrador u = (Administrador) user;
 		int escolha;

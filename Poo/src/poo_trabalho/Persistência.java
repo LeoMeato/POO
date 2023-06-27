@@ -29,6 +29,7 @@ public class Persistência {
             DataOutputStream out = new DataOutputStream(outputstream);
             for(byte[] b:coleção){
                 out.write(b);
+                System.out.println("aoba");
             }
             out.close();
             outputstream.close();
@@ -90,7 +91,11 @@ public class Persistência {
         raf.setLength(fileLength - 1);
     }
 
-    public static byte[] ReadBin(byte[] zeroBytes, String nomearquivo) {
+    public static byte[] ReadBin(int n, String nomearquivo) {
+    	
+    	byte[] zeroBytes = new byte[n];
+		Arrays.fill(zeroBytes, (byte)0);
+		
         try {
             FileInputStream fis = new FileInputStream(nomearquivo);
             DataInputStream dis = new DataInputStream(fis);
