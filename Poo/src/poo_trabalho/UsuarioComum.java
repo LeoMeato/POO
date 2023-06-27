@@ -12,7 +12,7 @@ public class UsuarioComum extends Usuario {
 	
 	private Collection<Musica> coleçãoParticular;
 	private String tipo = "comum";
-	private String nomearquivo = this.getNome()+"Playlist.txt";
+	private String nomeArquivo = this.getNome()+"Playlist.txt";
 	
 	public boolean adicionar(String titulo) {
 		Musica m = ColeçãoMusicas.recuperar(titulo);
@@ -22,7 +22,7 @@ public class UsuarioComum extends Usuario {
 					byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
     				Collection<byte[]> colecao = new ArrayList<>();
     				colecao.add(identificador);
-    				return Persistência.WriteBin(colecao, 1);
+    				return Persistência.WriteBin(colecao, nomeArquivo);
 				} catch (Exception e) {
 					System.out.println(e.toString());
 				}
@@ -50,7 +50,7 @@ public class UsuarioComum extends Usuario {
 			byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
     		Collection<byte[]> colecao = new ArrayList<>();
     		colecao.add(identificador);
-    		return Persistência.RemoveFromBin(colecao, nomearquivo);
+    		return Persistência.RemoveFromBin(colecao, nomeArquivo);
 		}
 		return false;
 	}
@@ -102,13 +102,13 @@ public class UsuarioComum extends Usuario {
 		return tipo;
 	}
 
-	public String getNomearquivo() {
-		return nomearquivo;
+	public String getNomeArquivo() {
+		return nomeArquivo;
 	}
 
-	public void setNomearquivo(String nomearquivo) {
-		this.nomearquivo = nomearquivo;
-	}
+	/*public void setNomeArquivo(String nomearquivo) {               // Não precisa, não é pra mudar mesmo
+		this.nomeArquivo = nomearquivo;
+	}*/ 
 
 	
 }

@@ -15,15 +15,15 @@ import java.util.Iterator;
 //import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Persistência {
-    public static boolean WriteBin(Collection<byte[]> coleção, int arquivo) {
+    public static boolean WriteBin(Collection<byte[]> coleção, String arquivo) {
         try {
-            String nomearquivo="Hola";
+            /*String nomearquivo="Hola";
         
             if((arquivo-1)==0) nomearquivo = "C:\\Users\\estev\\OneDrive\\\u00C1rea de Trabalho\\POO\\Poo\\src\\poo_trabalho\\users.txt";
             else if((arquivo-2)==0) nomearquivo = "C:\\Users\\estev\\OneDrive\\\u00C1rea de Trabalho\\POO\\Poo\\src\\poo_trabalho\\songs.txt";
-            else nomearquivo = "C:\\Users\\estev\\OneDrive\\\u00C1rea de Trabalho\\POO\\Poo\\src\\poo_trabalho\\login.txt";
+            else nomearquivo = "C:\\Users\\estev\\OneDrive\\\u00C1rea de Trabalho\\POO\\Poo\\src\\poo_trabalho\\login.txt";*/
             
-            OutputStream outputstream = new FileOutputStream(nomearquivo);
+            OutputStream outputstream = new FileOutputStream(arquivo);
             DataOutputStream out = new DataOutputStream(outputstream);
             for(byte[] b:coleção){
                 out.write(b);
