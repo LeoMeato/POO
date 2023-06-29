@@ -62,6 +62,7 @@ public abstract class Musica {
 	}
 
 	public byte[] toByte(){
+		System.out.println("deu tudo errado meu deus do céu");
 		return null;
 	}
 	

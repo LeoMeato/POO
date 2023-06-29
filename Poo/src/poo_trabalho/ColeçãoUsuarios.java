@@ -40,6 +40,29 @@ public class ColeçãoUsuarios {
 			m = it.next();
 			col.add(m.toByte());
 		}
-		Persistência.WriteBin(col, "users.txt");
+		Persistência.WriteBin(col, "users.bin");
 	}
+	
+	public static void escreverLogin(){
+		Iterator<Usuario> it = coleção.iterator();
+		Usuario m;
+		Collection<byte[]> col = new ArrayList<byte[]>();
+		for (int i = 0; i < coleção.size(); i++) {
+			m = it.next();
+			col.add(m.toLogInByte());
+		}
+		Persistência.WriteBin(col, "login.bin");
+	}
+	
+	/*public static void escreverPlaylists() {
+		Iterator<Usuario> it = coleção.iterator();
+		Usuario u;
+		for (int i = 0; i < coleção.size(); i++) {
+			u = it.next();
+			if (u.getTipo() == "comum") {
+				u = (UsuarioComum) u;
+				
+			}
+		}
+	}*/
 }

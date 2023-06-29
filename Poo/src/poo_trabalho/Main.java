@@ -32,6 +32,7 @@ public class Main {
 			
 			Sistema s = new Sistema();
 			s.executar();
+			s.guardarPersistência();
 			
 
 	}
