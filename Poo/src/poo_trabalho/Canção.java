@@ -9,10 +9,10 @@ public class Canção extends Musica {
 	
 	private String nomeArquivoLetra;
 	private String letra="";
-	public String getNomeArquivoLetra() {
+	public String getNomeArquivo() {
 		return nomeArquivoLetra;
 	}
-	public void setNomeArquivoLetra(String nomeArquivoLetra) {
+	public void setNomeArquivo(String nomeArquivoLetra) {
 		this.nomeArquivoLetra = nomeArquivoLetra;
 	}
 	public String getLetra() {

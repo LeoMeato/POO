@@ -160,6 +160,79 @@ public class Sistema {
 			
 	}
 	
+	public void atualizar() {
+		
+		Scanner s = new Scanner(System.in);
+		String titulo;
+		int escolha;
+		System.out.println("\nQual música gostaria de atualizar?\n");
+		titulo = s.nextLine();
+		Musica m = ColeçãoMusicas.recuperar(titulo);
+		if (m != null) {
+			System.out.println("Qual parte da música gostaria de atualizar?\n\n"
+					+ "(1) Título\n"
+					+ "(2) Identificador\n"
+					+ "(3) Duração\n"
+					+ "(4) Autores\n"
+					+ "(5) Data\n"
+					+ "(6) Gênero Musical\n"
+					+ "(7) Nome do arquivo\n");
+			escolha = tratarResposta(7, s);
+			
+			if (escolha == 1) {
+				System.out.println("\nQual o novo título? ");
+				String t = s.nextLine();
+				m.setTítulo(t);
+				System.out.println("\nTítulo alterado para " + t + " com sucesso!");
+			}
+			else if (escolha == 2) {
+				System.out.println("\nQual o novo identificador? ");
+				int i = s.nextInt();
+				m.setIdentificador(i);
+				System.out.println("\nIdentificador alterado para " + i + " com sucesso!");
+			}
+			else if (escolha == 3) {
+				System.out.println("\nQual a nova duração? (segundos) ");
+				int seg = s.nextInt();
+				Duração d = new Duração(seg % 60, (seg - (seg % 60)) / 60);
+				m.setDuração(d);
+				System.out.println("\nDuração alterada para " + d.getMinutos() + "min" + d.getSegundos() + "seg" + " com sucesso!");
+			}
+			else if (escolha == 4) {
+				System.out.println("\nQuais os novos autores? ");
+				String a = s.nextLine();
+				m.setAutores(a);
+				System.out.println("\nAutores alterados para " + a + " com sucesso!");
+			}
+			else if (escolha == 5) {
+				int dia, mes, ano;
+				System.out.println("\nNovo dia: ");
+				dia = s.nextInt();
+				System.out.println("\nNovo mes: ");
+				mes = s.nextInt();
+				System.out.println("\nNovo ano: ");
+				ano = s.nextInt();
+				Data d = new Data(dia, mes, ano);
+				m.setData(d);
+				System.out.println("\nData alterada para " + d.getDia() + "/" + d.getMês() + "/" + d.getAno() + " com sucesso!");
+			}
+			else if (escolha == 6) {
+				System.out.println("\nQual o novo gênero musical? ");
+				String g = s.nextLine();
+				m.setGênero_musical(g);
+				System.out.println("\nGênero alterado para " + g + " com sucesso!");
+			}
+			else if (escolha == 7) {
+				System.out.println("\nQual o novo nome do arquivo? ");
+				String a = s.nextLine();
+				m.setNomeArquivo(a);
+				System.out.println("\nNome do arquivo alterado para " + a + " com sucesso!");
+			}
+			
+		} else System.out.println("\nMúsica não encontrada.");
+		
+	}
+	
 	public void executar() {
 		int escolha1;
 		while (true) {

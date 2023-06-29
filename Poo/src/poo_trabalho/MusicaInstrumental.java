@@ -40,4 +40,12 @@ public class MusicaInstrumental extends Musica {
 		struct = bb.array();
 		return struct;
 	}
+
+	public String getNomeArquivo() {
+		return nomeArquivoPartitura;
+	}
+
+	public void setNomeArquivo(String nomeArquivoPartitura) {
+		this.nomeArquivoPartitura = nomeArquivoPartitura;
+	}
 }

@@ -65,5 +65,13 @@ public abstract class Musica {
 		return null;
 	}
 	
+	public String getNomeArquivo() {
+		return null;
+	}
+
+	public void setNomeArquivo(String nomeArquivoPartitura) {
+	
+	}
+	
 	
 }
