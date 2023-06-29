@@ -150,7 +150,7 @@ public class Sistema {
 			s.nextLine();
 			if (escolha == 1) ColeçãoMusicas.novaMusica();
 			else if (escolha == 2) {System.out.println("\nQue música quer vizualizar? "); ColeçãoMusicas.vizualizar(s.nextLine());}
-			else if (escolha == 3);
+			else if (escolha == 3) atualizar();
 			else if (escolha == 4) {System.out.println("\nQue música quer remover? "); if (ColeçãoMusicas.remover(ColeçãoMusicas.recuperar(s.nextLine()))) System.out.println("\n\nMúsica removida com sucesso!\n");}
 			else if (escolha == 5) páginaSignUp();
 			else if (escolha == 6) {System.out.println("\nQue usuário quer buscar? (login) "); ColeçãoUsuarios.buscar(s.nextLine()).toString();}
