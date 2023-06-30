@@ -7,7 +7,9 @@ public class Sistema {
 	Usuario user;
 	
 	public void recuperarPersistência() {
-		
+		ColeçãoMusicas.lê();
+		ColeçãoUsuarios.lê();
+		ColeçãoUsuarios.lêLogin();
 	}
 	
 	public void guardarPersistência() {

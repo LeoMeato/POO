@@ -113,10 +113,9 @@ public class ColeçãoMusicas {
 	
 	public static void lê() {
 
-	    String nomeArquivo = "songs.bin";
 	    Musica m = null;
 	
-	    try (DataInputStream input = new DataInputStream(new FileInputStream(nomeArquivo))) {
+	    try (DataInputStream input = Persistência.ReadBin("songs.bin")) {
 	        while (input.available() > 0) {
 	            byte[] titulob = new byte[60]; // Tamanho máximo da string 1
 	            byte[] autoresb = new byte[60]; // Tamanho máximo da string 2

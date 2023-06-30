@@ -1,12 +1,19 @@
 package poo_trabalho;
 
 import java.util.Collection;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ColeçãoUsuarios {
 	
 	private static Collection<Usuario> coleção = new ArrayList<Usuario>();
+	
+	public static void imprimePrimeiro() {                     //método de teste
+		Iterator<Usuario> it = coleção.iterator();
+		System.out.println(it.next().getIdentificador());
+	}
 
 	public static boolean adicionar(Usuario u) {
 		boolean contém = coleção.contains(u);
@@ -65,4 +72,64 @@ public class ColeçãoUsuarios {
 			}
 		}
 	}*/
+	
+	public static void lê() {
+
+	    Usuario u = null;
+	
+	    try (DataInputStream input = Persistência.ReadBin("users.bin")) {
+	        while (input.available() > 0) {
+	            byte[] nomeb = new byte[60];
+	            byte[] senhab = new byte[60];
+	            byte[] tipob = new byte[20];
+	            int identificador;
+	            input.read(nomeb);
+	            identificador = input.readInt();
+	            input.read(senhab);
+	            input.read(tipob);
+	            String nome = new String(nomeb).trim();
+	            String senha = new String(senhab).trim();
+	            String tipo = new String(tipob).trim();
+	            if (tipo.compareTo("comum") == 0) {
+	            	u = new UsuarioComum(nome, identificador, null, senha);
+	            } else if (tipo.compareTo("adm") == 0) {
+					u = new Administrador(nome, identificador, null, senha);
+				}
+	            coleção.add(u);
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+        
+    }
+	
+	public static void lêLogin() {
+		
+		Usuario u;
+	
+	    try (DataInputStream input = Persistência.ReadBin("login.bin")) {
+	        while (input.available() > 0) {
+	        	Iterator<Usuario> it = coleção.iterator();
+	            byte[] loginb = new byte[60];
+	            int identificador;
+	            identificador = input.readInt();
+	            input.read(loginb);
+	            String login = new String(loginb).trim();
+	            
+	            for (int i = 0; i < coleção.size(); i++) {
+	            	u = it.next();
+	            	if (u.getIdentificador() == identificador) {
+	            		u.setLogin(login);
+	            		break;
+	            	}
+	            }
+
+
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+        
+    }
+	
 }

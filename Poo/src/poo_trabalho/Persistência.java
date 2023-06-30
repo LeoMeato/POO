@@ -27,7 +27,6 @@ public class Persistência {
             DataOutputStream out = new DataOutputStream(outputStream);
             for (byte[] b : colecao) {
                 out.write(b);
-                System.out.println("aoba");
             }
             out.close();
             outputStream.close();
@@ -88,9 +87,17 @@ public class Persistência {
         raf.setLength(fileLength - 1);
     }
 
-    public static byte[] ReadBin(int n, String nomearquivo) {
+    public static DataInputStream ReadBin(String nomeArquivo) {
     	
-    	byte[] zeroBytes = new byte[n];
+    	try {
+			return new DataInputStream(new FileInputStream(nomeArquivo));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+    	
+    	/*byte[] zeroBytes = new byte[n];
 		Arrays.fill(zeroBytes, (byte)0);
 		
         try {
@@ -118,7 +125,7 @@ public class Persistência {
         } catch (IOException e) {
             System.out.println(e.toString());
             return null;
-        }
+        }*/
     }
     
 	/*public static DataInputStream ReadBin(String nomearquivo) {

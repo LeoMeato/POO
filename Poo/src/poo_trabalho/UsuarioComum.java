@@ -90,7 +90,7 @@ public class UsuarioComum extends Usuario {
 	public byte[] toByte(){
 		byte[] struct = super.toByte();
 		ByteBuffer bb = ByteBuffer.wrap(struct);
-		bb.put(124, "usuariocomum".getBytes());
+		bb.put(124, "comum".getBytes());
 		struct = bb.array();
 		return struct;
 	}
