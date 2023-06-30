@@ -68,6 +68,7 @@ public class Canção extends Musica {
 		bb.put(144,aux);
 		bb.put(164, "cancao".getBytes());
 		struct = bb.array();
+		System.out.println("nem tão errado...");
 		return struct;
 	}
 	

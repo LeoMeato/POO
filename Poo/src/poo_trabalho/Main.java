@@ -12,13 +12,13 @@ public class Main {
 	public static void main(String[] args) {
 
 
-			MusicaInstrumental m1 = new MusicaInstrumental(1111, "O Bater de Asas da Borboleta", new Duração(23, 4), "Mc Leozin", new Data(12, 4, 2007), "Funk", "partitura01");
-			Canção m2 = new Canção(2222, "Quando Surgirem as Estrelas", new Duração(25, 3), "Estevasso", new Data(18, 7, 2009), "Rock", "Poo\\src\\poo_trabalho\\letra.txt");
+			/*MusicaInstrumental m1 = new MusicaInstrumental(1111, "O Bater de Asas da Borboleta", new Duração(23, 4), "Mc Leozin", new Data(12, 4, 2007), "Funk", "partitura01");
+			Canção m2 = new Canção(2222, "Quando Surgirem as Estrelas", new Duração(25, 3), "Estevasso", new Data(18, 7, 2009), "Rock", "letra.txt");
 			Musica m3 = new MusicaInstrumental(3333, "Para Sempre Te Amarei", new Duração(57, 4), "Mozart II", new Data(1, 6, 1967), "Música Clássica", "partitura02");
 
 			ColeçãoMusicas.cadastra(m1);
 			ColeçãoMusicas.cadastra(m2);
-			ColeçãoMusicas.cadastra(m3);
+			ColeçãoMusicas.cadastra(m3);*/
 			
 			UsuarioComum uc1 = new UsuarioComum("a", 0, "a", "a");
 			UsuarioComum uc2 = new UsuarioComum("b", 1, "b", "b");
@@ -31,6 +31,8 @@ public class Main {
 			ColeçãoUsuarios.adicionar(adm1);
 			
 			Sistema s = new Sistema();
+			
+			ColeçãoMusicas.lê();
 			s.executar();
 			s.guardarPersistência();
 			

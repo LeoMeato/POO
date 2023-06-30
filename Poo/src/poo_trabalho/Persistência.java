@@ -1,9 +1,12 @@
 package poo_trabalho;
 
 import java.io.DataInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -123,6 +126,25 @@ public class Persistência {
             return null;
         }
     }
+    
+	/*public static DataInputStream ReadBin(String nomearquivo) {
+		
+		FileInputStream filein;
+		try {
+			filein = new FileInputStream(nomearquivo);
+			DataInputStream in = new DataInputStream(filein);
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			
+			return in;
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	
+	}*/
 
     private static boolean bytesAreEqual(byte[] array1, byte[] array2) {
         if (array1.length != array2.length) {

@@ -1,6 +1,7 @@
 package poo_trabalho;
 
 import java.nio.ByteBuffer;
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,4 +110,128 @@ public class ColeçãoMusicas {
 		else System.out.println("Música já existe.");
 
 	}
+	
+	public static void lê() {
+		
+		/*DataInputStream in = Persistência.ReadBin("songs.bin");
+		boolean eof = false;
+		Musica m = null;
+		String titulo, autores, genero, arquivo, tipo;
+		int identificador, dia, mes, ano, seg, min;
+		Data data;
+		Duração duracao;
+		while (!eof) {
+			try {
+				identificador = in.readInt();
+				titulo = in.readUTF();
+				seg = in.readInt();
+				min = in.readInt();
+				autores = in.readUTF();
+				dia = in.readInt();
+				mes = in.readInt();
+				ano = in.readInt();
+				arquivo = in.readUTF();
+				tipo = in.readUTF();
+				
+				if (tipo.compareTo("musicainstrumental") == 0) {
+					m = new MusicaInstrumental(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+				} else if (tipo.compareTo("cancao") == 0) {
+					m = new Canção(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+				}
+				
+				coleção.add(m);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				eof = true;
+			}
+			
+		}
+		
+		---------------------
+		
+		boolean eof = false;
+		Musica m = null;
+		String titulo, autores, genero, arquivo, tipo;
+		int identificador, dia, mes, ano, seg, min;
+		Data data;
+		Duração duracao;
+		RandomAccessFile ra;
+		int i = 0;
+		
+		while (!eof) {
+        
+	        try {
+	
+	            ra = new RandomAccessFile("songs.bin","r");
+	            ra.seek((i)*231);
+	            byte[] b = new byte[231];
+	            ra.read(b, 0 + i*231, 231 + i*231);
+	            
+	            identificador = ByteBuffer.wrap(b).getInt(0);
+				titulo = new String(b,4,60);
+				seg = ByteBuffer.wrap(b).getInt(64);
+				min = ByteBuffer.wrap(b).getInt(68);
+				autores = new String(b,72,60);
+				dia = ByteBuffer.wrap(b).getInt(132);
+				mes = ByteBuffer.wrap(b).getInt(136);
+				ano = ByteBuffer.wrap(b).getInt(140);
+				arquivo = new String(b,144,60);
+				tipo = new String(b,164,(231 - 164));
+				
+				
+	            ra.close();
+	            if (tipo.compareTo("musicainstrumental") == 0) {
+					m = new MusicaInstrumental(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+				} else if (tipo.compareTo("cancao") == 0) {
+					m = new Canção(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+				}
+				
+				coleção.add(m);
+	            
+	        } catch (IOException ex) {
+	            eof = true;
+	        }
+        i ++;
+		}*/
+		
+
+
+	        String nomeArquivo = "songs.bin";
+	        Musica m = null;
+	
+	        try (DataInputStream input = new DataInputStream(new FileInputStream(nomeArquivo))) {
+	            while (input.available() > 0) {
+	                byte[] titulob = new byte[60]; // Tamanho máximo da string 1
+	                byte[] autoresb = new byte[60]; // Tamanho máximo da string 2
+	                byte[] arquivob = new byte[20];
+	                byte[] tipob = new byte[(231 - 164)];
+	                int identificador, seg, min, dia, mes, ano;
+	                identificador = input.readInt();
+	                input.read(titulob); // Lê os bytes da string 1
+	                seg = input.readInt();
+	                min = input.readInt();
+	                input.read(autoresb); // Lê os bytes da string 2
+	                dia = input.readInt();
+	                mes = input.readInt();
+	                ano = input.readInt();
+	                input.read(arquivob);
+	                input.read(tipob);
+	                String titulo = new String(titulob).trim();
+	                String autores = new String(autoresb).trim();
+	                String arquivo = new String(arquivob).trim();
+	                String tipo = new String(tipob).trim();
+	                if (tipo.compareTo("musicainstrumental") == 0) {
+						m = new MusicaInstrumental(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+					} else if (tipo.compareTo("cancao") == 0) {
+						m = new Canção(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+					}
+	                coleção.add(m);
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+        
+    }
+
 }
