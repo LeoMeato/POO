@@ -121,6 +121,7 @@ public class ColeçãoMusicas {
 	            byte[] autoresb = new byte[60]; // Tamanho máximo da string 2
 	            byte[] arquivob = new byte[20];
 	            byte[] tipob = new byte[(231 - 164)];
+	            byte[] generob = new byte[60];
 	            int identificador, seg, min, dia, mes, ano;
 	            identificador = input.readInt();
 	            input.read(titulob); // Lê os bytes da string 1
@@ -130,19 +131,22 @@ public class ColeçãoMusicas {
 	            dia = input.readInt();
 	            mes = input.readInt();
 	            ano = input.readInt();
+	            input.read(generob);
 	            input.read(arquivob);
 	            input.read(tipob);
 	            String titulo = new String(titulob).trim();
 	            String autores = new String(autoresb).trim();
+	            String genero = new String(generob).trim();
 	            String arquivo = new String(arquivob).trim();
 	            String tipo = new String(tipob).trim();
 	            if (tipo.compareTo("musicainstrumental") == 0) {
-	            	m = new MusicaInstrumental(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+	            	m = new MusicaInstrumental(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), genero, arquivo);
 	            } else if (tipo.compareTo("cancao") == 0) {
-					m = new Canção(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), "genero", arquivo);
+					m = new Canção(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), genero, arquivo);
 				}
 	            coleção.add(m);
 	        }
+	        input.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

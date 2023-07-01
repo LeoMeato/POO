@@ -151,7 +151,7 @@ public class Sistema {
 		Scanner s = new Scanner(System.in);
 		String titulo;
 		while (true) {
-			System.out.println("O que deseja fazer?\n\n"
+			System.out.println("\nO que deseja fazer?\n\n"
 					+ "(1) Cadastrar música\n"
 					+ "(2) Vizualizar música\n"
 					+ "(3) Atualizar música\n"
@@ -167,7 +167,7 @@ public class Sistema {
 			else if (escolha == 3) atualizar();
 			else if (escolha == 4) {System.out.println("\nQue música quer remover? "); if (ColeçãoMusicas.remover(ColeçãoMusicas.recuperar(s.nextLine()))) System.out.println("\n\nMúsica removida com sucesso!\n");}
 			else if (escolha == 5) páginaSignUp();
-			else if (escolha == 6) {System.out.println("\nQue usuário quer buscar? (login) "); ColeçãoUsuarios.buscar(s.nextLine()).toString();}
+			else if (escolha == 6) {System.out.println("\nQue usuário quer buscar? (login) "); System.out.println(ColeçãoUsuarios.buscar(s.nextLine()).toString());}
 			else if (escolha == 7) {System.out.println("\nQue usuário quer remover? (login) "); ColeçãoUsuarios.remover(ColeçãoUsuarios.buscar(s.nextLine()));}
 			else if (escolha == 8) {this.user = null; break;}
 		}

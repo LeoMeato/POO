@@ -4,6 +4,13 @@ import java.nio.ByteBuffer;
 
 public class Administrador extends Usuario {
 	
+	@Override
+	public String toString() {
+		return "Administrador [tipo=" + tipo + ", toString()=" + super.toString() + ", getNome()=" + getNome()
+				+ ", getIdentificador()=" + getIdentificador() + ", getLogin()=" + getLogin() + ", getSenha()="
+				+ getSenha() + "]";
+	}
+
 	private String tipo = "adm";
 	
 	public Administrador(String nome, int identificador, String login, String senha) {

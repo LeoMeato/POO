@@ -51,22 +51,11 @@ public class Canção extends Musica {
 
 	public byte[] toByte(){
 		byte[]aux;
-		byte[] struct = new byte[231];
-		Arrays.fill(struct, (byte)0);
+		byte[] struct = super.toByte();
 		ByteBuffer bb = ByteBuffer.wrap(struct);
-		bb.putInt(0,getIdentificador());
-		aux = getTítulo().getBytes();
-		bb.put(4,aux);
-		bb.putInt(64,getDuração().getSegundos());
-		bb.putInt(68,getDuração().getMinutos());
-		aux=getAutores().getBytes();
-		bb.put(72,aux);
-		bb.putInt(132, getData().getDia());
-		bb.putInt(136, getData().getMês());
-		bb.putInt(140, getData().getAno());
 		aux = nomeArquivoLetra.getBytes();
-		bb.put(144,aux);
-		bb.put(164, "cancao".getBytes());
+		bb.put(204,aux);
+		bb.put(224, "cancao".getBytes());
 		struct = bb.array();
 		return struct;
 	}

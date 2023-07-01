@@ -85,6 +85,7 @@ public class ColeçãoUsuarios {
 				}
 	            coleção.add(u);
 	        }
+	        input.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -114,6 +115,7 @@ public class ColeçãoUsuarios {
 
 
 	        }
+	        input.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

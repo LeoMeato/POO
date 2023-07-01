@@ -45,9 +45,9 @@ public class UsuarioComum extends Usuario {
             File arquivo = new File(nomeArquivo);
 
             if (arquivo.createNewFile()) {
-                System.out.println("Arquivo criado: " + arquivo.getAbsolutePath());
+                //System.out.println("Arquivo criado: " + arquivo.getAbsolutePath());
             } else {
-                System.out.println("O arquivo já existe.");
+                //System.out.println("O arquivo já existe.");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,6 +133,7 @@ public class UsuarioComum extends Usuario {
 	            m = ColeçãoMusicas.buscaID(identificador);
 	            if (m != null) coleçãoParticular.add(m);
 	        }
+	        input.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -155,6 +156,14 @@ public class UsuarioComum extends Usuario {
 		return col;
 	}
 	
+	@Override
+	public String toString() {
+		return "UsuarioComum [coleçãoParticular=" + coleçãoParticular + ", tipo=" + tipo + ", nomeArquivo="
+				+ nomeArquivo + ", toString()=" + super.toString() + ", getNome()=" + getNome()
+				+ ", getIdentificador()=" + getIdentificador() + ", getLogin()=" + getLogin() + ", getSenha()="
+				+ getSenha() + "]";
+	}
+
 	public boolean temPlaylist() {
 		return (coleçãoParticular != null);
 	}

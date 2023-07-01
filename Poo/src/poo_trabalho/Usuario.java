@@ -8,6 +8,11 @@ import java.util.Arrays;
 
 public abstract class Usuario {
 	
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", identificador=" + identificador + ", login=" + login + ", senha=" + senha
+				+ ", tipo=" + tipo + "]";
+	}
 	private String nome;
 	private int identificador;
 	private String login;
@@ -60,7 +65,8 @@ public abstract class Usuario {
 	}
 
 	public byte[] toLogInByte(){
-		byte[]aux = getLogin().getBytes();
+		String login = this.getLogin();
+		byte[]aux = login.getBytes();
 		byte[] struct = new byte[64];
 		Arrays.fill(struct, (byte)0);
 		ByteBuffer bb = ByteBuffer.wrap(struct);
