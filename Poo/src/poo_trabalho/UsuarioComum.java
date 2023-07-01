@@ -125,7 +125,7 @@ public class UsuarioComum extends Usuario {
 
 	    Musica m = null;
 	
-	    try (DataInputStream input = Persistência.ReadBin(nomeArquivo)) {
+	    try (DataInputStream input = Persistência.readBin(nomeArquivo)) {
 	    	if (input.available() > 0) this.coleçãoParticular = new ArrayList<Musica>();
 	        while (input.available() > 0) {
 	            int identificador;

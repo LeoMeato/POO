@@ -25,7 +25,7 @@ public class ColeçãoMusicas {
 	
 	public static boolean cadastra(Musica musica) {
 		boolean contém = coleção.contains(musica);
-		if(!contém) coleção.add(musica);
+		if(!contém && musica != null) coleção.add(musica);
 		return !contém;
 	}
 	
@@ -47,7 +47,7 @@ public class ColeçãoMusicas {
 			m = it.next();
 			col.add(m.toByte());
 		}
-		Persistência.WriteBin(col, "songs.bin");
+		Persistência.writeBin(col, "songs.bin");
 	}
 	
 	public static void vizualizar(String titulo) {
@@ -60,7 +60,7 @@ public class ColeçãoMusicas {
 		
 		Scanner s = new Scanner(System.in);
 		int escolha;
-		Musica m;
+		Musica m = null;
 		String titulo;
 		String autores;
 		String genero;
@@ -71,6 +71,7 @@ public class ColeçãoMusicas {
 		int mes;
 		int ano;
 		Data data;
+		String arquivo;
 		
 		System.out.println("\nTítulo: ");
 		titulo = s.nextLine();
@@ -96,14 +97,10 @@ public class ColeçãoMusicas {
 		System.out.println("\nMúsica Instrumental (1) ou Canção (2)? ");
 		escolha = Sistema.tratarResposta(2, s);
 		s.nextLine();
-		if (escolha == 1) {
-			System.out.println("\nNome do arquivo da partitura: ");
-			m = new MusicaInstrumental(identificador, titulo, duracao, autores, data, genero, s.nextLine());
-		}
-		else {
-			System.out.println("\nNome do arquivo da letra: ");
-			m = new Canção(identificador, titulo, duracao, autores, data, genero, s.nextLine());
-		}
+		System.out.println("\nNome do arquivo da partitura: ");
+		arquivo = s.nextLine();
+		
+		m = Factory.instanciarMusica(escolha, m, identificador, titulo, duracao, autores, data, genero, arquivo);
 		
 		boolean foi = cadastra(m);
 		if (foi) System.out.println("Música cadastrada com sucesso!");
@@ -115,7 +112,7 @@ public class ColeçãoMusicas {
 
 	    Musica m = null;
 	
-	    try (DataInputStream input = Persistência.ReadBin("songs.bin")) {
+	    try (DataInputStream input = Persistência.readBin("songs.bin")) {
 	        while (input.available() > 0) {
 	            byte[] titulob = new byte[60]; // Tamanho máximo da string 1
 	            byte[] autoresb = new byte[60]; // Tamanho máximo da string 2
@@ -139,11 +136,7 @@ public class ColeçãoMusicas {
 	            String genero = new String(generob).trim();
 	            String arquivo = new String(arquivob).trim();
 	            String tipo = new String(tipob).trim();
-	            if (tipo.compareTo("musicainstrumental") == 0) {
-	            	m = new MusicaInstrumental(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), genero, arquivo);
-	            } else if (tipo.compareTo("cancao") == 0) {
-					m = new Canção(identificador, titulo, new Duração(seg, min), autores, new Data(dia, mes, ano), genero, arquivo);
-				}
+	            m = Factory.instanciarMusica(tipo, m, identificador, titulo, seg, min, autores, dia, mes, ano, genero, arquivo);
 	            coleção.add(m);
 	        }
 	        input.close();

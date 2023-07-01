@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 public class Persistência {
 
-     public static boolean WriteBin(Collection<byte[]> colecao, String arquivo) {
+     public static boolean writeBin(Collection<byte[]> colecao, String arquivo) {
         try {
             OutputStream outputStream = new FileOutputStream(arquivo);
             DataOutputStream out = new DataOutputStream(outputStream);
@@ -87,7 +87,7 @@ public class Persistência {
         raf.setLength(fileLength - 1);
     }
 
-    public static DataInputStream ReadBin(String nomeArquivo) {
+    public static DataInputStream readBin(String nomeArquivo) {
     	
     	try {
 			return new DataInputStream(new FileInputStream(nomeArquivo));

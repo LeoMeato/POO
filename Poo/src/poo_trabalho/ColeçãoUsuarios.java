@@ -17,7 +17,7 @@ public class ColeçãoUsuarios {
 
 	public static boolean adicionar(Usuario u) {
 		boolean contém = coleção.contains(u);
-		if(!contém) coleção.add(u);
+		if(!contém && u != null) coleção.add(u);
 		return !contém;
 	}
 	
@@ -47,7 +47,7 @@ public class ColeçãoUsuarios {
 			m = it.next();
 			col.add(m.toByte());
 		}
-		Persistência.WriteBin(col, "users.bin");
+		Persistência.writeBin(col, "users.bin");
 	}
 	
 	public static void escreverLogin(){
@@ -58,14 +58,14 @@ public class ColeçãoUsuarios {
 			m = it.next();
 			col.add(m.toLogInByte());
 		}
-		Persistência.WriteBin(col, "login.bin");
+		Persistência.writeBin(col, "login.bin");
 	}
 	
 	public static void lê() {
 
 	    Usuario u = null;
 	
-	    try (DataInputStream input = Persistência.ReadBin("users.bin")) {
+	    try (DataInputStream input = Persistência.readBin("users.bin")) {
 	        while (input.available() > 0) {
 	            byte[] nomeb = new byte[60];
 	            byte[] senhab = new byte[60];
@@ -78,11 +78,7 @@ public class ColeçãoUsuarios {
 	            String nome = new String(nomeb).trim();
 	            String senha = new String(senhab).trim();
 	            String tipo = new String(tipob).trim();
-	            if (tipo.compareTo("comum") == 0) {
-	            	u = new UsuarioComum(nome, identificador, null, senha);
-	            } else if (tipo.compareTo("adm") == 0) {
-					u = new Administrador(nome, identificador, null, senha);
-				}
+	            u = Factory.instanciarUsuario(tipo, u, nome, identificador, senha);
 	            coleção.add(u);
 	        }
 	        input.close();
@@ -96,7 +92,7 @@ public class ColeçãoUsuarios {
 		
 		Usuario u;
 	
-	    try (DataInputStream input = Persistência.ReadBin("login.bin")) {
+	    try (DataInputStream input = Persistência.readBin("login.bin")) {
 	        while (input.available() > 0) {
 	        	Iterator<Usuario> it = coleção.iterator();
 	            byte[] loginb = new byte[60];
@@ -144,7 +140,7 @@ public class ColeçãoUsuarios {
 			u = it.next();
 			if (u.getTipo().compareTo("comum") == 0) {
 				UsuarioComum uc = (UsuarioComum) u;
-				if (uc.temPlaylist()) Persistência.WriteBin(uc.escreve(), uc.getNomeArquivo());
+				if (uc.temPlaylist()) Persistência.writeBin(uc.escreve(), uc.getNomeArquivo());
 			}
 		}
 		
