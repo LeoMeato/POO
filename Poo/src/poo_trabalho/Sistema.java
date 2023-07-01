@@ -10,12 +10,14 @@ public class Sistema {
 		ColeçãoMusicas.lê();
 		ColeçãoUsuarios.lê();
 		ColeçãoUsuarios.lêLogin();
+		ColeçãoUsuarios.lêPlaylist();
 	}
 	
 	public void guardarPersistência() {
 		ColeçãoMusicas.escrever();
 		ColeçãoUsuarios.escrever();
 		ColeçãoUsuarios.escreverLogin();
+		ColeçãoUsuarios.escrevePlaylist();
 	}
 	
 	public static int tratarResposta(int max, Scanner s) { //pede uma escolha do usuário até que digite um inteiro entre 1 e max

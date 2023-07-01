@@ -61,18 +61,6 @@ public class ColeçãoUsuarios {
 		Persistência.WriteBin(col, "login.bin");
 	}
 	
-	/*public static void escreverPlaylists() {
-		Iterator<Usuario> it = coleção.iterator();
-		Usuario u;
-		for (int i = 0; i < coleção.size(); i++) {
-			u = it.next();
-			if (u.getTipo() == "comum") {
-				u = (UsuarioComum) u;
-				
-			}
-		}
-	}*/
-	
 	public static void lê() {
 
 	    Usuario u = null;
@@ -131,5 +119,33 @@ public class ColeçãoUsuarios {
 	    }
         
     }
+	
+	public static void lêPlaylist() {
+		
+		Usuario u;
+		Iterator<Usuario> it = coleção.iterator();
+		for (int i = 0; i < coleção.size(); i++) {
+			u = it.next();
+			if (u.getTipo().compareTo("comum") == 0) {
+				UsuarioComum uc = (UsuarioComum) u;
+				uc.lê();
+			}
+		}
+		
+	}
+	
+	public static void escrevePlaylist() {
+		
+		Usuario u;
+		Iterator<Usuario> it = coleção.iterator();
+		for (int i = 0; i < coleção.size(); i++) {
+			u = it.next();
+			if (u.getTipo().compareTo("comum") == 0) {
+				UsuarioComum uc = (UsuarioComum) u;
+				if (uc.temPlaylist()) Persistência.WriteBin(uc.escreve(), uc.getNomeArquivo());
+			}
+		}
+		
+	}
 	
 }

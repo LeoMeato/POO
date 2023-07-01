@@ -1,8 +1,12 @@
 package poo_trabalho;
 
 import java.util.Collection;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,20 +16,20 @@ public class UsuarioComum extends Usuario {
 	
 	private Collection<Musica> coleçãoParticular;
 	private String tipo = "comum";
-	private String nomeArquivo = this.getNome()+"Playlist.txt";
+	private String nomeArquivo = this.getNome()+"Playlist.bin";
 	
 	public boolean adicionar(String titulo) {
 		Musica m = ColeçãoMusicas.recuperar(titulo);
-		if (m != null) {
+		if (m != null && coleçãoParticular != null) {
 			if (!coleçãoParticular.contains(m) && coleçãoParticular != null) {
-				try {
+				/*try {
 					byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
     				Collection<byte[]> colecao = new ArrayList<>();
     				colecao.add(identificador);
     				return Persistência.WriteBin(colecao, nomeArquivo);
 				} catch (Exception e) {
 					System.out.println(e.toString());
-				}
+				}*/
 
 				this.coleçãoParticular.add(m);
 				return true;
@@ -37,6 +41,17 @@ public class UsuarioComum extends Usuario {
 	
 	public UsuarioComum(String nome, int identificador, String login, String senha) {
 		super(nome, identificador, login, senha);
+		try {
+            File arquivo = new File(nomeArquivo);
+
+            if (arquivo.createNewFile()) {
+                System.out.println("Arquivo criado: " + arquivo.getAbsolutePath());
+            } else {
+                System.out.println("O arquivo já existe.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public void criarPlaylist() {
@@ -47,10 +62,10 @@ public class UsuarioComum extends Usuario {
 		Musica m = buscar(titulo);
 		if (m !=  null) {
 			coleçãoParticular.remove(m);
-			byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
+			/*byte[] identificador = ByteBuffer.allocate(4).putInt(m.getIdentificador()).array();
     		Collection<byte[]> colecao = new ArrayList<>();
     		colecao.add(identificador);
-    		return Persistência.RemoveFromBin(colecao, nomeArquivo);
+    		return Persistência.RemoveFromBin(colecao, nomeArquivo);*/
 		}
 		return false;
 	}
@@ -106,9 +121,43 @@ public class UsuarioComum extends Usuario {
 		return nomeArquivo;
 	}
 
-	/*public void setNomeArquivo(String nomearquivo) {               // Não precisa, não é pra mudar mesmo
-		this.nomeArquivo = nomearquivo;
-	}*/ 
+	public void lê() {
+
+	    Musica m = null;
+	
+	    try (DataInputStream input = Persistência.ReadBin(nomeArquivo)) {
+	    	if (input.available() > 0) this.coleçãoParticular = new ArrayList<Musica>();
+	        while (input.available() > 0) {
+	            int identificador;
+	            identificador = input.readInt();
+	            m = ColeçãoMusicas.buscaID(identificador);
+	            if (m != null) coleçãoParticular.add(m);
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+        
+    }
+	
+	public Collection<byte[]> escreve() {
+		Collection<byte[]> col = new ArrayList<byte[]>();
+		Iterator<Musica> it = coleçãoParticular.iterator();
+		Musica m;
+		for (int i = 0; i < coleçãoParticular.size(); i++) {
+			m = it.next();
+			byte[] struct = new byte[4];
+			Arrays.fill(struct, (byte)0);
+			ByteBuffer bb = ByteBuffer.wrap(struct);
+			bb.putInt(0, m.getIdentificador());
+			struct = bb.array();
+			col.add(struct);
+		}
+		return col;
+	}
+	
+	public boolean temPlaylist() {
+		return (coleçãoParticular != null);
+	}
 
 	
 }

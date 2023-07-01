@@ -148,5 +148,15 @@ public class ColeçãoMusicas {
 	    }
         
     }
+	
+	public static Musica buscaID(int id) {
+		Iterator<Musica> it = coleção.iterator();
+		Musica m;
+		for (int i = 0; i < coleção.size(); i++) {
+			m = it.next();
+			if (m.getIdentificador() == id) return m;
+		}
+		return null;
+	}
 
 }

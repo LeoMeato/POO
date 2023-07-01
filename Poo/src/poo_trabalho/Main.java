@@ -9,6 +9,9 @@ public class Main {
 			s.recuperarPersistência();
 			s.executar();
 			s.guardarPersistência();
+			
+			// O Bater de Asas da Borboleta
+			// Quando Surgirem as Estrelas
 
 	}
 }
